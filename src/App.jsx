@@ -8,7 +8,7 @@ function App() {
 
   const [taskList, setTaskList] = useState(() => {
     let saved = localStorage.getItem("tasksHistory");
-    return saved ? JSON.parse(saved) : 0;
+    return saved ? JSON.parse(saved) : [];
   });
 
   const [finishedTask, setFinishTasks] = useState(() => {
@@ -62,7 +62,6 @@ function App() {
     [taskList],
     [finishedTask]
   );
-  console.log(finishedTask);
   return (
     <div className="min-h-screen bg-slate-400 p-7">
       <h1 className="text-center mb-11 bg-green-500 text-white">
@@ -91,7 +90,7 @@ function App() {
         <h2 className="text-3xl font-semibold m-3">List:-</h2>
         {taskList.map((item, index) => {
           return (
-            <div className="flex justify-between mb-3">
+            <div className="flex justify-between mb-3" key={index} >
               <li key={index} className="text-xl ">
                 {item}
               </li>
